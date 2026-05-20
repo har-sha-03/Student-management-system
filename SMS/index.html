@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,21 +33,32 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-dark text-white font-sans min-h-screen overflow-x-hidden relative selection:bg-accent selection:text-white">
+
+<body class="bg-dark text-white font-sans min-h-screen relative selection:bg-accent selection:text-white">
     <!-- Background Elements -->
     <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-50 floating-slow"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 floating-slower"></div>
-        <div class="absolute top-[40%] left-[60%] w-64 h-64 bg-indigo-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-30 floating"></div>
+        <div
+            class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-50 floating-slow">
+        </div>
+        <div
+            class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 floating-slower">
+        </div>
+        <div
+            class="absolute top-[40%] left-[60%] w-64 h-64 bg-indigo-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-30 floating">
+        </div>
     </div>
 
     <!-- Navbar -->
-    <nav class="sticky top-0 z-50 glass-panel border-b border-glassBorder py-4 px-6 md:px-12 flex justify-between items-center transition-all duration-300">
+    <nav
+        class="sticky top-0 z-50 glass-panel border-b border-glassBorder py-4 px-6 md:px-12 flex justify-between items-center transition-all duration-300">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-[0_0_15px_rgba(147,51,234,0.5)]">
+            <div
+                class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-[0_0_15px_rgba(147,51,234,0.5)]">
                 <i class="fa-solid fa-atom text-white text-xl"></i>
             </div>
-            <h1 class="text-xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Antigravity</h1>
+            <h1
+                class="text-xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                Student Portal</h1>
         </div>
         <div class="hidden md:flex gap-6">
             <button onclick="switchTab('dashboard')" class="nav-btn active group">
@@ -60,24 +72,50 @@
             </button>
         </div>
         <!-- Mobile Menu Btn -->
-        <button class="md:hidden text-gray-300 hover:text-white">
+        <button onclick="toggleMobileMenu()"
+            class="md:hidden text-gray-300 hover:text-white transition-colors p-2 -mr-2">
             <i class="fa-solid fa-bars text-2xl"></i>
         </button>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenu"
+        class="fixed inset-0 z-50 bg-black/90 backdrop-blur-lg flex-col items-center justify-center gap-8 hidden opacity-0 transition-opacity duration-300">
+        <button onclick="toggleMobileMenu()"
+            class="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-xmark text-3xl"></i>
+        </button>
+        <button onclick="switchTab('dashboard'); toggleMobileMenu()"
+            class="text-2xl font-light tracking-wide text-gray-300 hover:text-white hover:text-purple-400 transition-colors flex items-center">
+            <i class="fa-solid fa-chart-pie mr-4 w-8 text-center text-purple-500"></i>Dashboard
+        </button>
+        <button onclick="switchTab('students'); toggleMobileMenu()"
+            class="text-2xl font-light tracking-wide text-gray-300 hover:text-white hover:text-purple-400 transition-colors flex items-center">
+            <i class="fa-solid fa-users mr-4 w-8 text-center text-blue-500"></i>Students
+        </button>
+        <button onclick="switchTab('attendance'); toggleMobileMenu()"
+            class="text-2xl font-light tracking-wide text-gray-300 hover:text-white hover:text-purple-400 transition-colors flex items-center">
+            <i class="fa-solid fa-clipboard-user mr-4 w-8 text-center text-green-500"></i>Attendance
+        </button>
+    </div>
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-10 relative z-10">
         <!-- Dashboard Tab -->
         <section id="dashboard" class="tab-content active">
-            <h2 class="text-3xl font-light mb-8 flex items-center"><i class="fa-solid fa-satellite-dish mr-3 text-purple-400"></i> System Overview</h2>
-            
+            <h2 class="text-3xl font-light mb-8 flex items-center"><i
+                    class="fa-solid fa-satellite-dish mr-3 text-purple-400"></i> System Overview</h2>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <!-- Stat Card 1 -->
                 <div class="glass-card hover-float p-6 rounded-2xl relative overflow-hidden group">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-purple-600/20 rounded-full blur-2xl group-hover:bg-purple-600/40 transition-all duration-500"></div>
+                    <div
+                        class="absolute -right-6 -top-6 w-24 h-24 bg-purple-600/20 rounded-full blur-2xl group-hover:bg-purple-600/40 transition-all duration-500">
+                    </div>
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-gray-400 font-medium">Total Students</h3>
-                        <div class="w-10 h-10 rounded-full bg-glass flex items-center justify-center border border-glassBorder">
+                        <div
+                            class="w-10 h-10 rounded-full bg-glass flex items-center justify-center border border-glassBorder">
                             <i class="fa-solid fa-user-graduate text-purple-400"></i>
                         </div>
                     </div>
@@ -85,11 +123,15 @@
                 </div>
 
                 <!-- Stat Card 2 -->
-                <div class="glass-card hover-float p-6 rounded-2xl relative overflow-hidden group" style="animation-delay: 0.1s">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-blue-600/20 rounded-full blur-2xl group-hover:bg-blue-600/40 transition-all duration-500"></div>
+                <div class="glass-card hover-float p-6 rounded-2xl relative overflow-hidden group"
+                    style="animation-delay: 0.1s">
+                    <div
+                        class="absolute -right-6 -top-6 w-24 h-24 bg-blue-600/20 rounded-full blur-2xl group-hover:bg-blue-600/40 transition-all duration-500">
+                    </div>
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-gray-400 font-medium">Active Courses</h3>
-                        <div class="w-10 h-10 rounded-full bg-glass flex items-center justify-center border border-glassBorder">
+                        <div
+                            class="w-10 h-10 rounded-full bg-glass flex items-center justify-center border border-glassBorder">
                             <i class="fa-solid fa-book-open text-blue-400"></i>
                         </div>
                     </div>
@@ -97,11 +139,15 @@
                 </div>
 
                 <!-- Stat Card 3 -->
-                <div class="glass-card hover-float p-6 rounded-2xl relative overflow-hidden group" style="animation-delay: 0.2s">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-green-600/20 rounded-full blur-2xl group-hover:bg-green-600/40 transition-all duration-500"></div>
+                <div class="glass-card hover-float p-6 rounded-2xl relative overflow-hidden group"
+                    style="animation-delay: 0.2s">
+                    <div
+                        class="absolute -right-6 -top-6 w-24 h-24 bg-green-600/20 rounded-full blur-2xl group-hover:bg-green-600/40 transition-all duration-500">
+                    </div>
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-gray-400 font-medium">Avg Attendance</h3>
-                        <div class="w-10 h-10 rounded-full bg-glass flex items-center justify-center border border-glassBorder">
+                        <div
+                            class="w-10 h-10 rounded-full bg-glass flex items-center justify-center border border-glassBorder">
                             <i class="fa-solid fa-calendar-check text-green-400"></i>
                         </div>
                     </div>
@@ -110,17 +156,27 @@
             </div>
 
             <!-- Dashboard visual element -->
-            <div class="glass-card rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 border border-purple-500/20 relative overflow-hidden">
+            <div
+                class="glass-card rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 border border-purple-500/20 relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-transparent"></div>
                 <div class="relative z-10 max-w-lg">
-                    <h2 class="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">Welcome to the Future of Education Management</h2>
-                    <p class="text-gray-400 leading-relaxed">Experience a seamless, gravity-defying interface designed for modern institutions. Navigate through student records and attendance with unprecedented fluidity.</p>
+                    <h2
+                        class="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
+                        Welcome to the Future of Education Management</h2>
+                    <p class="text-gray-400 leading-relaxed">Experience a seamless, gravity-defying interface designed
+                        for modern institutions. Navigate through student records and attendance with unprecedented
+                        fluidity.</p>
                 </div>
                 <div class="relative w-48 h-48 flex-shrink-0 z-10 floating">
-                    <div class="absolute inset-0 border-2 border-purple-500/30 rounded-full animate-[spin_10s_linear_infinite]"></div>
-                    <div class="absolute inset-4 border-2 border-blue-500/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+                    <div
+                        class="absolute inset-0 border-2 border-purple-500/30 rounded-full animate-[spin_10s_linear_infinite]">
+                    </div>
+                    <div
+                        class="absolute inset-4 border-2 border-blue-500/30 rounded-full animate-[spin_15s_linear_infinite_reverse]">
+                    </div>
                     <div class="absolute inset-0 flex items-center justify-center text-6xl">
-                        <i class="fa-brands fa-space-awesome text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"></i>
+                        <i
+                            class="fa-brands fa-space-awesome text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"></i>
                     </div>
                 </div>
             </div>
@@ -129,14 +185,18 @@
         <!-- Students Tab -->
         <section id="students" class="tab-content hidden">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-                <h2 class="text-3xl font-light flex items-center"><i class="fa-solid fa-user-astronaut mr-3 text-purple-400"></i> Student Roster</h2>
-                
+                <h2 class="text-3xl font-light flex items-center"><i
+                        class="fa-solid fa-user-astronaut mr-3 text-purple-400"></i> Student Roster</h2>
+
                 <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
                     <div class="relative w-full sm:w-64">
-                        <input type="text" id="searchInput" placeholder="Search by name or roll no..." class="w-full bg-glass border border-glassBorder rounded-full py-2 px-4 pl-10 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
-                        <i class="fa-solid fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                        <input type="text" id="searchInput" placeholder="Search by name or roll no..."
+                            class="w-full bg-glass border border-glassBorder rounded-full py-2 px-4 pl-10 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
+                        <i
+                            class="fa-solid fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
                     </div>
-                    <button onclick="openModal('addStudentModal')" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white py-2 px-6 rounded-full font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_25px_rgba(147,51,234,0.5)] transition-all transform hover:-translate-y-1 flex items-center whitespace-nowrap">
+                    <button onclick="openModal('addStudentModal')"
+                        class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white py-2 px-6 rounded-full font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_25px_rgba(147,51,234,0.5)] transition-all transform hover:-translate-y-1 flex items-center whitespace-nowrap">
                         <i class="fa-solid fa-plus mr-2"></i> Add Student
                     </button>
                 </div>
@@ -144,9 +204,10 @@
 
             <div class="glass-card rounded-2xl overflow-hidden border border-glassBorder">
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
+                    <table class="w-full text-left border-collapse whitespace-nowrap">
                         <thead>
-                            <tr class="bg-white/5 border-b border-white/10 text-gray-400 text-sm uppercase tracking-wider">
+                            <tr
+                                class="bg-white/5 border-b border-white/10 text-gray-400 text-sm uppercase tracking-wider">
                                 <th class="py-4 px-6 font-medium">Roll No</th>
                                 <th class="py-4 px-6 font-medium">Name</th>
                                 <th class="py-4 px-6 font-medium">Course</th>
@@ -165,10 +226,12 @@
         <!-- Attendance Tab -->
         <section id="attendance" class="tab-content hidden">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-                <h2 class="text-3xl font-light flex items-center"><i class="fa-solid fa-radar mr-3 text-purple-400"></i> Daily Attendance Tracker</h2>
-                
+                <h2 class="text-3xl font-light flex items-center"><i class="fa-solid fa-radar mr-3 text-purple-400"></i>
+                    Daily Attendance Tracker</h2>
+
                 <div class="relative">
-                    <input type="date" id="attendanceDate" class="bg-glass border border-glassBorder rounded-lg py-2 px-4 text-white focus:outline-none focus:border-purple-500 transition-all [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert">
+                    <input type="date" id="attendanceDate"
+                        class="bg-glass border border-glassBorder rounded-lg py-2 px-4 text-white focus:outline-none focus:border-purple-500 transition-all [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert">
                 </div>
             </div>
 
@@ -180,57 +243,71 @@
 
     <!-- Modals -->
     <!-- Add/Edit Student Modal -->
-    <div id="addStudentModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+    <div id="addStudentModal"
+        class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal('addStudentModal')"></div>
-        <div class="glass-card relative z-10 w-full max-w-md rounded-2xl border border-glassBorder shadow-[0_10px_40px_rgba(0,0,0,0.5)] transform scale-95 transition-transform duration-300 p-8 modal-content">
-            <button onclick="closeModal('addStudentModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+        <div
+            class="glass-card relative z-10 w-full max-w-md rounded-2xl border border-glassBorder shadow-[0_10px_40px_rgba(0,0,0,0.5)] transform scale-95 transition-transform duration-300 p-8 modal-content">
+            <button onclick="closeModal('addStudentModal')"
+                class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-            <h3 class="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400" id="modalTitle">New Student Profile</h3>
-            
+            <h3 class="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400"
+                id="modalTitle">New Student Profile</h3>
+
             <form id="studentForm" onsubmit="saveStudent(event)">
                 <input type="hidden" id="studentId">
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-400 mb-1">Full Name</label>
-                        <input type="text" id="s_name" required class="w-full bg-black/30 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
+                        <input type="text" id="s_name" required
+                            class="w-full bg-black/30 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-400 mb-1">Roll Number</label>
-                            <input type="text" id="s_roll" required class="w-full bg-black/30 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:border-purple-500 transition-all">
+                            <input type="text" id="s_roll" required
+                                class="w-full bg-black/30 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:border-purple-500 transition-all">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-400 mb-1">Course</label>
-                            <input type="text" id="s_course" required class="w-full bg-black/30 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:border-purple-500 transition-all">
+                            <input type="text" id="s_course" required
+                                class="w-full bg-black/30 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:border-purple-500 transition-all">
                         </div>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
-                        <input type="email" id="s_email" required class="w-full bg-black/30 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:border-purple-500 transition-all">
+                        <input type="email" id="s_email" required
+                            class="w-full bg-black/30 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:border-purple-500 transition-all">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-400 mb-1">Status</label>
-                        <select id="s_status" class="w-full bg-black/30 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:border-purple-500 transition-all appearance-none">
+                        <select id="s_status"
+                            class="w-full bg-black/30 border border-white/10 rounded-lg py-2.5 px-4 text-white focus:outline-none focus:border-purple-500 transition-all appearance-none">
                             <option value="Active" class="bg-dark">Active</option>
                             <option value="Inactive" class="bg-dark">Inactive</option>
                         </select>
                     </div>
                 </div>
                 <div class="mt-8 flex justify-end gap-3">
-                    <button type="button" onclick="closeModal('addStudentModal')" class="py-2 px-5 rounded-lg font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Cancel</button>
-                    <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white py-2 px-6 rounded-lg font-medium shadow-[0_0_15px_rgba(147,51,234,0.4)] transition-all">Save Matrix</button>
+                    <button type="button" onclick="closeModal('addStudentModal')"
+                        class="py-2 px-5 rounded-lg font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="bg-purple-600 hover:bg-purple-500 text-white py-2 px-6 rounded-lg font-medium shadow-[0_0_15px_rgba(147,51,234,0.4)] transition-all">Save
+                        Matrix</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 transition-all duration-300 z-[200] glass-card px-6 py-3 rounded-lg border-l-4 border-purple-500 flex items-center shadow-lg">
+    <div id="toast"
+        class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 transition-all duration-300 z-[200] glass-card px-6 py-3 rounded-lg border-l-4 border-purple-500 flex items-center shadow-lg">
         <i class="fa-solid fa-circle-check text-purple-400 mr-3"></i>
         <span id="toastMsg" class="text-white">Operation successful</span>
     </div>
 
     <script src="js/main.js"></script>
 </body>
+
 </html>
