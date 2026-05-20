@@ -1,13 +1,17 @@
 <?php
-$host = "127.0.0.1";
-$port = 3306;
-$username = "root"; // Update this with your database username
-$password = "";     // Update this with your database password
-$database = "antigravity_sms";
+error_reporting(0);
+ini_set('display_errors', 0);
+$host = "sql306.infinityfree.com";
+$username = "if0_41966911"; // Update this with your database username
+$password = "8tYwa5NyOw4";     // Update this with your database password
+$database = "if0_41966911_sms_db";
 
-$conn = new mysqli($host, $username, $password, $database, $port);
-
-if ($conn->connect_error) {
-    die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
+try {
+    $conn = new mysqli($host, $username, $password, $database);
+    if ($conn->connect_error) {
+        die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
+    }
+} catch (Exception $e) {
+    die(json_encode(["error" => "DB Exception: " . $e->getMessage()]));
 }
 ?>
