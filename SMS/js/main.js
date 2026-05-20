@@ -92,9 +92,9 @@ async function saveStudent(e) {
     e.preventDefault();
     
     const id = document.getElementById('studentId').value;
-    const method = id ? 'PUT' : 'POST';
     
     const studentData = {
+        action: id ? 'update' : 'create',
         id: id,
         name: document.getElementById('s_name').value,
         roll_no: document.getElementById('s_roll').value,
@@ -105,7 +105,7 @@ async function saveStudent(e) {
 
     try {
         const res = await fetch(`${API_URL}students.php`, {
-            method: method,
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(studentData)
         });
@@ -128,7 +128,11 @@ async function deleteStudent(id) {
     if (!confirm('Are you sure you want to remove this student from the matrix?')) return;
     
     try {
-        const res = await fetch(`${API_URL}students.php?id=${id}`, { method: 'DELETE' });
+        const res = await fetch(`${API_URL}students.php`, { 
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'delete', id: id })
+        });
         const result = await res.json();
         
         if (result.error) {
@@ -309,6 +313,23 @@ function editStudent(student) {
     
     document.getElementById('modalTitle').textContent = 'Edit Matrix Profile';
     openModal('addStudentModal');
+}
+
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        menu.classList.add('flex');
+        setTimeout(() => {
+            menu.classList.remove('opacity-0');
+        }, 10);
+    } else {
+        menu.classList.add('opacity-0');
+        setTimeout(() => {
+            menu.classList.add('hidden');
+            menu.classList.remove('flex');
+        }, 300);
+    }
 }
 
 function showToast(message, isError = false) {
